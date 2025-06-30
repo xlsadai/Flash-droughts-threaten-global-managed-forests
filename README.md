@@ -1,17 +1,20 @@
 # Flash droughts threaten global managed forests
-Jianzhuang Pang <sup>1, 2</sup>, Hang Xu <sup>1, 2, *</sup>, Yang Xu <sup>1, 2</sup>, Yifan Zhang <sup>1, 2</sup>,
-Xiaoyun Wu <sup>1, 2</sup>, Kexin Li <sup>1, 2</sup>, Zhiqiang Zhang <sup>1, 2, *</sup>
+Jianzhuang Pang <sup>1, 2, 3</sup>, Hang Xu <sup>1, 2, 3, *</sup>, Yang Xu <sup>1, 2, 3</sup>, 
+Yifan Zhang <sup>1, 2, 3</sup>, Xiaoyun Wu <sup>1, 2, 3</sup>, Kexin Li <sup>1, 2, 3</sup>, 
+Zhiqiang Zhang <sup>1, 2, 3, *</sup>
 
 <sup>1</sup> Jixian National Forest Ecosystem Observation and Research Station, CNERN, Beijing Forestry University, 
 Beijing 100083, P.R. China  
- <sup>2</sup> Key Laboratory of Soil and Water Conservation and Desertiﬁcation Combating, State Forestry and Grassland 
-Administration, China, Beijing 100083, China Jining Water Conservancy Development Center, Jining, 272000, China
+<sup>2</sup> Key Laboratory of Soil and Water Conservation and Desertiﬁcation Combating, State Forestry and Grassland 
+Administration, Beijing 100083, P.R. China  
+<sup>3</sup> School of Soil and Water Conservation, Beijing Forestry University, Beijing 100083, P.R. China
 
 **\*Correspondence**  
-Assoc. Prof. Hang Xu, School of Soil and Water Conservation, Beijing Forestry University, Beijing, China. 
+Dr. Hang Xu, School of Soil and Water Conservation, Beijing Forestry University, Beijing, China. 
 Email: hangxu@bjfu.edu.cn  
-Prof. Zhiqiang Zhang, School of Soil and Water Conservation, Beijing Forestry University, Beijing, China. 
+Dr. Zhiqiang Zhang, School of Soil and Water Conservation, Beijing Forestry University, Beijing, China. 
 Tel: 0086-10-62338828 Email: zhqzhang@bjfu.edu.cn 
+
 
 ## Description
 The code for plotting and data analysis used in the manuscript.
