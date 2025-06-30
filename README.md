@@ -25,7 +25,7 @@ The code for plotting and data analysis used in the manuscript.
 
 ## How to Get Start
 The results of the paper can be reproduced by using the following code in **_main.py_**.    
-Before using the code, you should [download the data](https://figshare.com/s/00a907a42f869aa18d74) for analysis and 
+Before using the code, you should [download the data](https://doi.org/10.6084/m9.figshare.29435648) for analysis and 
 replace **_manuscript_data_** with the folder path where the data is stored, and set **_figure_path_** to the folder 
 path where you wish to save the results.
 - Fig. 1 Spatial patterns and latitudinal variations in flash drought (FD) characteristics across global forests.
