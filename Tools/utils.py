@@ -34,6 +34,8 @@ import dask
 
 dask.config.set({'dataframe.query-planning': True})
 
+export_figure_type = "pdf"
+export_figure_dpi = 450
 
 # Check if the folder exists
 def create_path(path, is_dir=False):
@@ -85,7 +87,7 @@ def draw_gis_figure(ax, top_labels=False, bottom_labels = False, left_labels = F
     ax.add_feature(cfeature.COASTLINE.with_scale("110m"))
     # 添加经纬度标签
     gl =ax.gridlines(crs=proj, draw_labels=False, xlocs=[-120, -60, 0, 60, 120],
-                 ylocs=[-30, 0, 30, 60], linewidth=0.5, color='k', alpha=0.5, linestyle='--', zorder=-1)
+                 ylocs=[-30, 0, 30, 60], linewidth=0.05, color='k', alpha=0.5, linestyle='--', zorder=-1)
     gl.top_labels = top_labels  # 打开顶端的经纬度标签
     gl.bottom_labels = bottom_labels  # 打开底端的经纬度标签
     gl.left_labels = left_labels  # 打开左侧的经纬度标签
@@ -153,7 +155,7 @@ def single_spatial_distribution(inputPath, outputPath, var_name, level,
                         facecolors='k', edgecolors='none', transform=ccrs.PlateCarree())
 
     # Show or save the figure
-    fig.savefig(os.path.join(outputPath, f"{figure_name}.jpg"), dpi=300, bbox_inches='tight')
+    fig.savefig(os.path.join(outputPath, f"{figure_name}.{export_figure_type}"), dpi=export_figure_dpi, bbox_inches='tight')
     plt.close()
 
 
@@ -212,7 +214,7 @@ def single_spatial_distribution_without_ft(inputPath, outputPath, var_name, leve
                         facecolors='k', edgecolors='none', transform=ccrs.PlateCarree())
 
     # Show or save the figure
-    fig.savefig(os.path.join(outputPath, f"{figure_name}.jpg"), dpi=300, bbox_inches='tight')
+    fig.savefig(os.path.join(outputPath, f"{figure_name}.{export_figure_type}"), dpi=export_figure_dpi, bbox_inches='tight')
     plt.close()
 
 
@@ -258,7 +260,7 @@ def spatial_distribution_mk_test(data_path, outputPath, var_name, level, colorba
     # colorbar.set_ticklabels(tick_label)
 
     # Show or save the figure
-    fig.savefig(os.path.join(outputPath, f"{figure_name}.jpg"), dpi=300, bbox_inches='tight')
+    fig.savefig(os.path.join(outputPath, f"{figure_name}.{export_figure_type}"), dpi=export_figure_dpi, bbox_inches='tight')
     plt.close()
 
 
@@ -335,7 +337,7 @@ def lat_mean_plot(
         if i < len(colorbar_label) - 1:
             ax.tick_params(labelbottom=False)
     # Show or save the figure
-    fig.savefig(os.path.join(outputPath, f"{figure_name}.jpg"), dpi=300, bbox_inches='tight')
+    fig.savefig(os.path.join(outputPath, f"{figure_name}.{export_figure_type}"), dpi=export_figure_dpi, bbox_inches='tight')
     plt.close()
 
 
@@ -391,7 +393,7 @@ def delta_dv_spatial_distribution(inputPath, outputPath, var_name, colorbar_labe
     # cb.set_ticklabels(['decrease IF', 'increase IF', 'decrease MF', 'increase MF'])
 
     # Show or save the figure
-    fig.savefig(os.path.join(outputPath, f"{figure_name}.jpg"), dpi=300, bbox_inches='tight')
+    fig.savefig(os.path.join(outputPath, f"{figure_name}.{export_figure_type}"), dpi=export_figure_dpi, bbox_inches='tight')
     plt.close()
 
 
@@ -469,7 +471,7 @@ def characteristic_lat_mean(
         if i < len(colorbar_label) - 1:
             ax.tick_params(labelbottom=False)
     # Show or save the figure
-    fig.savefig(os.path.join(outputPath, f"{figure_name}.jpg"), dpi=300, bbox_inches='tight')
+    fig.savefig(os.path.join(outputPath, f"{figure_name}.{export_figure_type}"), dpi=export_figure_dpi, bbox_inches='tight')
     plt.close()
 
 
@@ -533,7 +535,7 @@ def delta_ndvi_distribution_plot(datas, classify_name, colors, outputPath, figur
     # Set y-axis range slightly higher than the max density
     plt.ylim(bottom=0, top=max_density * 1.1)
 
-    plt.savefig(os.path.join(outputPath, f"{figure_name}.jpg"), dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(outputPath, f"{figure_name}.{export_figure_type}"), dpi=export_figure_dpi, bbox_inches='tight')
     plt.close()
     # Reset matplotlib global settings
     rcParams.update(rcParamsDefault)
@@ -607,9 +609,9 @@ def hexbin_plot(pPath, tPath, xlabel, ylabel,
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
 
-    outputFigurePath = os.path.join(outputPath, f"{figure_name}.jpg")
+    outputFigurePath = os.path.join(outputPath, f"{figure_name}.{export_figure_type}")
     create_path(outputPath)
-    plt.savefig(outputFigurePath, dpi=300, bbox_inches='tight')
+    plt.savefig(outputFigurePath, dpi=export_figure_dpi, bbox_inches='tight')
     plt.close()
     # Reset matplotlib global settings
     rcParams.update(rcParamsDefault)
@@ -698,9 +700,9 @@ def interaction_effects(df, main_feature, interaction_feature, classify_col,
     ax.set_yticks(y_ticks)
     ax.tick_params(direction='in', length=3)
 
-    output_figure_path = os.path.join(outputPath, f"{figure_name}.jpg")
+    output_figure_path = os.path.join(outputPath, f"{figure_name}.{export_figure_type}")
     create_path(output_figure_path)
-    fig.savefig(output_figure_path, dpi=300, bbox_inches='tight')
+    fig.savefig(output_figure_path, dpi=export_figure_dpi, bbox_inches='tight')
     plt.close(fig)
 
     # Reset matplotlib global settings
@@ -769,9 +771,9 @@ def main_effect_lines(y, X, outputPath, figure_name, x_lim, y_lim, group_size, l
     ax.tick_params(axis="y", direction='in')
     ax.tick_params(length=3)
 
-    output_figure_path = os.path.join(outputPath, f"{figure_name}.jpg")
+    output_figure_path = os.path.join(outputPath, f"{figure_name}.{export_figure_type}")
     create_path(output_figure_path)
-    fig.savefig(output_figure_path, dpi=300, bbox_inches='tight')
+    fig.savefig(output_figure_path, dpi=export_figure_dpi, bbox_inches='tight')
     plt.close(fig)
 
     # Reset matplotlib global settings
@@ -808,7 +810,7 @@ def forest_management_bar(df, classify_col, object_val, colors, xlabel, ylabel, 
 
     # Save figure
     plt.tight_layout()
-    plt.savefig(os.path.join(outputpath, f"{figure_name}.jpg"), dpi=300)
+    plt.savefig(os.path.join(outputpath, f"{figure_name}.{export_figure_type}"), dpi=export_figure_dpi)
 
     # Reset default parameters
     rcParams.update(rcParamsDefault)
@@ -844,7 +846,7 @@ def forest_management_practices_bar(df, classify_col, object_val, colors, ylabel
 
     # Save figure
     plt.tight_layout()
-    plt.savefig(os.path.join(outputpath, f"{figure_name}.jpg"), dpi=300)
+    plt.savefig(os.path.join(outputpath, f"{figure_name}.{export_figure_type}"), dpi=export_figure_dpi)
 
     # Reset default parameters
     rcParams.update(rcParamsDefault)
@@ -993,7 +995,7 @@ def consistency_lat_delta(
     main_ax.set_xlim(bar_xlim)
     main_ax.set_xticks(x_axis_ticks)
 
-    fig.savefig(os.path.join(outputPath, f"{figure_name}.jpg"), dpi=300, bbox_inches='tight')
+    fig.savefig(os.path.join(outputPath, f"{figure_name}.{export_figure_type}"), dpi=export_figure_dpi, bbox_inches='tight')
     plt.close()
     rcParams.update(rcParamsDefault)
 
@@ -1106,8 +1108,8 @@ def consistency_bio_lat(
         ax.tick_params(axis='x', direction='in', length=3)
 
         # Plot consistency curve
-        ax.plot(lat_consistency, lat_centers, linestyle='-', color="green")
-        ax.fill_betweenx(lat_centers, 0, lat_consistency, color="green", alpha=0.3)
+        ax.plot(lat_consistency, lat_centers, linestyle='-', color="#009e73")
+        ax.fill_betweenx(lat_centers, 0, lat_consistency, color="#009e73", alpha=0.3)
 
         ax.set_xlabel('Consistency (%)')
         ax.set_xlim(line_xlim)
@@ -1115,8 +1117,8 @@ def consistency_bio_lat(
         plt.tight_layout()
 
         # Save the figure
-        fig_path = os.path.join(outputPath, f"{figure_name}_{var}.jpg")
-        fig.savefig(fig_path, dpi=300, bbox_inches='tight')
+        fig_path = os.path.join(outputPath, f"{figure_name}_{var}.{export_figure_type}")
+        fig.savefig(fig_path, dpi=export_figure_dpi, bbox_inches='tight')
         plt.close(fig)
 
     # Reset matplotlib global settings
@@ -1193,9 +1195,9 @@ def model_evaluation(simulated, observed, outputPath, figure_name, make_text=Fal
     ax.set_yticks([-3, 0, 3])
     ax.tick_params(axis='both', direction='out', length=3, pad=0)
     # Show or save the figure
-    output_figure_path = os.path.join(outputPath, f"{figure_name}.jpg")
+    output_figure_path = os.path.join(outputPath, f"{figure_name}.{export_figure_type}")
     create_path(output_figure_path)
-    fig.savefig(output_figure_path, dpi=300, bbox_inches='tight')
+    fig.savefig(output_figure_path, dpi=export_figure_dpi, bbox_inches='tight')
     plt.close(fig)
 
     # Reset matplotlib global settings
@@ -1205,28 +1207,31 @@ def model_evaluation(simulated, observed, outputPath, figure_name, make_text=Fal
 def delta_ndvi_between_ft_and_fm(df, classify_col, sub_classify_col, value_col, color, ylabel, xlabel,
                                  outputpath, figure_name):
     """
-    绘制分半小提琴图，按classify_col分组，sub_classify_col分左右两侧，并指定颜色。
+    Plot split violin plots, grouped by classify_col on the x-axis,
+    with sub_classify_col categories split on the left and right sides,
+    and with user-defined colors.
 
-    参数:
-    df: DataFrame，包含数据
-    classify_col: str，x轴的分组列名
-    sub_classify_col: str，左右分组的列名
-    value_col: str，数值列名
-    color: list，颜色列表，对应sub_classify_col的两个类别
-    xlabel: str，x轴标签
-    ylabel: str，y轴标签
-    legend_title: str，图例标题
-    outputpath: str，输出路径
-    figure_name: str，图片名称
+    Parameters:
+    df: DataFrame, containing the data
+    classify_col: str, column name for grouping on the x-axis
+    sub_classify_col: str, column name for the left/right split
+    value_col: str, column name for values
+    color: list, list of colors corresponding to the two categories in sub_classify_col
+    xlabel: str, label for the x-axis
+    ylabel: str, label for the y-axis
+    legend_title: str, title of the legend
+    outputpath: str, path to save the output figure
+    figure_name: str, file name of the figure
     """
     rcParams['font.size'] = 20
     rcParams['font.family'] = 'Times New Roman'
     plt.figure(figsize=(7, 5))
 
-    # 确定分类顺序和hue顺序
-    order = df[classify_col].unique().tolist()  # 保持原数据分类顺序
-    hue_order = ['IF', 'MF']  # 确保子分类顺序与颜色对应
-    # 绘制分半小提琴图
+    # Determine order of categories for x-axis and hue
+    order = df[classify_col].unique().tolist()  # Keep the original order from the data
+    hue_order = ['IF', 'MF']  # Ensure subcategory order matches the color list
+
+    # Draw split violin plots
     ax = sns.violinplot(
         x=classify_col,
         y=value_col,
@@ -1236,43 +1241,45 @@ def delta_ndvi_between_ft_and_fm(df, classify_col, sub_classify_col, value_col, 
         palette=color,
         order=order,
         hue_order=hue_order,
-        cut=0,  # 限制小提琴范围到数据范围
-        inner="quartile",  # 显示内部分位数线
-        scale="width",  # 统一面积缩放
-        bw=0.1,  # 控制平滑带宽
-        # alpha=0.5,  # 仅设置填充透明度
-        linewidth=1.5,  # 设置边线宽度
+        cut=0,              # Limit the violin shape to the data range
+        inner="quartile",   # Show quartile lines inside
+        scale="width",      # Scale violins to have equal area
+        bw=0.1,             # Control kernel bandwidth for smoothing
+        # alpha=0.5,        # Optionally set fill transparency
+        linewidth=1.5,      # Width of violin edges
         linecolor="black",
         saturation=0.75,
         legend=False,
     )
 
-    # 添加水平参考线
+    # Add horizontal reference line
     plt.axhline(y=0, color='black', linestyle='--', zorder=0)
 
     # Axis labels and limits
-    plt.xlabel(xlabel)  # Swapped labels
-    plt.ylabel(ylabel)  # Swapped labels
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
     plt.ylim(-1.75, 1.75)
     plt.yticks([-1.5, -1, -0.5, 0, 0.5, 1, 1.5])
 
-    # 设置图例
+    # Legend (optional)
     # handles, labels = ax.get_legend_handles_labels()
     # legend = ax.legend(
     #     handles=handles,
     #     labels=labels,
     #     loc='upper right',
-    #     bbox_to_anchor=(1, 1.1),  # 右上角偏移量 (水平位置, 垂直位置)
-    #     ncol=2,  # 横向排列
-    #     frameon=False,  # 移除背景框
-    #     borderaxespad=0.3,  # 缩小图例框与坐标轴的间距
-    #     handletextpad=0.3,  # 缩小图标与文本的间距
-    #     columnspacing=0.5,  # 缩小列间间距
+    #     bbox_to_anchor=(1, 1.1),  # Offset from the upper right corner (x, y)
+    #     ncol=2,                   # Arrange in two columns
+    #     frameon=False,            # Remove background box
+    #     borderaxespad=0.3,        # Reduce spacing between legend and axis
+    #     handletextpad=0.3,        # Reduce spacing between marker and label
+    #     columnspacing=0.5,        # Reduce spacing between columns
     # )
 
-    # 调整布局并保存
+    # Adjust layout and save
     plt.tight_layout()
-    plt.savefig(os.path.join(outputpath, f"{figure_name}.jpg"), dpi=300)
+    plt.savefig(os.path.join(outputpath, f"{figure_name}.{export_figure_type}"), dpi=export_figure_dpi)
     plt.close()
+
     # Reset default parameters
     rcParams.update(rcParamsDefault)
+

@@ -18,7 +18,7 @@ from Tools.utils import (create_path, single_spatial_distribution, spatial_distr
                          delta_dv_spatial_distribution, characteristic_lat_mean, delta_ndvi_distribution_plot,
                          hexbin_plot, interaction_effects, main_effect_lines,
                          forest_management_bar, consistency_lat_delta, consistency_bio_lat, model_evaluation,
-                         delta_ndvi_between_ft_and_fm, 
+                         delta_ndvi_between_ft_and_fm,
                          single_spatial_distribution_without_ft, forest_management_practices_bar)
 
 
@@ -47,7 +47,7 @@ def figure_1abcd():
     colorbar_label = {
         "condition_peak": "Peak Stress /dimensionless",
         "condition_duration": "Stress Duration /Pentads",
-        "development_speed": "Onset Rate /Pentad⁻¹", # ⁻ ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ (U+2070 到 U+2079)
+        "development_speed": "Onset Rate /Pentad⁻¹",  # ⁻ ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ (U+2070 到 U+2079)
         "frequency_sum": "Frequency /Events per decade",
     }
     level = {
@@ -58,14 +58,15 @@ def figure_1abcd():
     }
     cmap = {
         "condition_peak": LinearSegmentedColormap.from_list("red_cmap",
-                                                                [(0, '#d7191cff'), (0.75, '#ffffbfff'), (1, 'white')]),
+                                                            [(0, '#d7191cff'), (0.75, '#ffffbfff'), (1, 'white')]),
         "condition_duration": LinearSegmentedColormap.from_list("blue_cmap",
-                                                                    [(0, 'white'), (0.25, '#fbb4ae'), (1, '#08306b')]),
+                                                                [(0, 'white'), (0.25, '#bdd7e7'), (1, '#08306b')]),
         "development_speed": LinearSegmentedColormap.from_list("green_cmap",
-                                                                   [(0, '#00441b'), (0.75, '#a6cee3'), (1, 'white')]),
-        "frequency_sum": LinearSegmentedColormap.from_list("green_cmap",
-                                                           ['#2b83baff', '#abdda4ff', "#ffffbfff", '#fdae61ff',
-                                                            '#d7191cff']),
+                                                               [(0, '#00441b'), (0.75, '#a6cee3'), (1, 'white')]),
+        "frequency_sum": LinearSegmentedColormap.from_list("colorblind_cmap",
+                                                           ["#313695", "#74add1", "#ffffbf", "#f46d43", "#a50026"]
+                                                           # RdYlBu
+                                                           ),
     }
     extend = {
         "condition_peak": "min",
@@ -95,6 +96,7 @@ def figure_1abcd():
                                     )
         print(" >>>>>>> Finish !")
 
+
 def supplementary_figure_4():
     data_path = os.path.join(manuscript_data, r"fd_event_stats/")
     outputPath = os.path.join(figure_path, "Supplementary Figure 4/")
@@ -115,9 +117,10 @@ def supplementary_figure_4():
         "frequency_sum": (1, 5),
     }
     cmap = {
-        "frequency_sum": LinearSegmentedColormap.from_list("green_cmap",
-                                                           ['#2b83baff', '#abdda4ff', "#ffffbfff", '#fdae61ff',
-                                                            '#d7191cff']),
+        "frequency_sum": LinearSegmentedColormap.from_list("colorblind_cmap",
+                                                           ["#313695", "#74add1", "#ffffbf", "#f46d43", "#a50026"]
+                                                           # RdYlBu
+                                                           ),
     }
     extend = {
         "frequency_sum": "max",
@@ -129,16 +132,16 @@ def supplementary_figure_4():
         print(f"Plot ==> {figure_name[var]}", end="")
         inputPath = data_path + f"{var}.nc"
         single_spatial_distribution_without_ft(inputPath=inputPath,
-                                                outputPath=outputPath,
-                                                var_name=var,
-                                                level=level[var],
-                                                colorbar_ticks=colorbar_ticks[var],
-                                                colorbar_label=colorbar_label[var],
-                                                figure_name=figure_name[var],
-                                                cmap=cmap[var],
-                                                extend=extend[var],
-                                                boundary_labels=boundary_labels[var]
-                                                )
+                                               outputPath=outputPath,
+                                               var_name=var,
+                                               level=level[var],
+                                               colorbar_ticks=colorbar_ticks[var],
+                                               colorbar_label=colorbar_label[var],
+                                               figure_name=figure_name[var],
+                                               cmap=cmap[var],
+                                               extend=extend[var],
+                                               boundary_labels=boundary_labels[var]
+                                               )
         print(" >>>>>>> Finish !")
 
 
@@ -178,14 +181,15 @@ def supplementary_figure_3abcd():
     }
     cmap = {
         "condition_peak": LinearSegmentedColormap.from_list("red_cmap",
-                                                                [(0, '#d7191cff'), (0.75, '#ffffbfff'), (1, 'white')]),
+                                                            [(0, '#d7191cff'), (0.75, '#ffffbfff'), (1, 'white')]),
         "condition_duration": LinearSegmentedColormap.from_list("blue_cmap",
-                                                                    [(0, 'white'), (0.25, '#fbb4ae'), (1, '#08306b')]),
+                                                                [(0, 'white'), (0.25, '#bdd7e7'), (1, '#08306b')]),
         "development_speed": LinearSegmentedColormap.from_list("green_cmap",
-                                                                   [(0, '#00441b'), (0.75, '#a6cee3'), (1, 'white')]),
-        "frequency_sum": LinearSegmentedColormap.from_list("green_cmap",
-                                                           ['#2b83baff', '#abdda4ff', "#ffffbfff", '#fdae61ff',
-                                                            '#d7191cff']),
+                                                               [(0, '#00441b'), (0.75, '#a6cee3'), (1, 'white')]),
+        "frequency_sum": LinearSegmentedColormap.from_list("colorblind_cmap",
+                                                           ["#313695", "#74add1", "#ffffbf", "#f46d43", "#a50026"]
+                                                           # RdYlBu
+                                                           ),
     }
     extend = {
         "condition_peak": "min",
@@ -215,6 +219,7 @@ def supplementary_figure_3abcd():
                                     )
         print(" >>>>>>> Finish !")
 
+
 def figure_1e():
     data_path = os.path.join(manuscript_data, r"fd_event_stats/")
     outputPath = os.path.join(figure_path, "Figure 1/")
@@ -237,7 +242,7 @@ def figure_1e():
     }
     line_colors = {
         "Figure 1 e": (
-            ("#fdae61ff", "#ffffbfff"), ("#67000d", "#fb7050"), ("#08306b", "#529dcc"), ("#00441b", "#55b567"))
+            ("#e69f00", "#ffffbfff"), ("#d55e00", "#fb7050"), ("#0072b2", "#529dcc"), ("#009e73", "#55b567"))
     }
     line_ticks = {
         "Figure 1 e": ((1, 10, 18), (-1.7, -1.9, -2.1), (3, 4, 5, 6), (-0.6, -0.8, -1))
@@ -258,6 +263,7 @@ def figure_1e():
                       line_xlim=line_xlim[fig]
                       )
         print(" >>>>>>> Finish !")
+
 
 def supplementary_figure_3_e():
     data_path = os.path.join(manuscript_data, r"fd_event_stats_sm/")
@@ -281,7 +287,7 @@ def supplementary_figure_3_e():
     }
     line_colors = {
         "Supplementary Figure 3 e": (
-            ("#fdae61ff", "#ffffbfff"), ("#67000d", "#fb7050"), ("#08306b", "#529dcc"), ("#00441b", "#55b567"))
+            ("#e69f00", "#ffffbfff"), ("#d55e00", "#fb7050"), ("#0072b2", "#529dcc"), ("#009e73", "#55b567"))
     }
     line_ticks = {
         "Supplementary Figure 3 e": ((1, 20, 40), (10, 7.5, 5), (4, 5, 6, 7), (-5, -17.5, -30))
@@ -304,6 +310,7 @@ def supplementary_figure_3_e():
                       )
         print(" >>>>>>> Finish !")
 
+
 def figure_2a():
     data_path = os.path.join(manuscript_data, r"vd_stats/")
     outputPath = os.path.join(figure_path, "Figure 2/")
@@ -319,7 +326,7 @@ def figure_2a():
         "delta_ndvi_avg": "ΔNDVI",
     }
     cmap = {
-        "delta_ndvi_avg": ["#FED700", "#32CD33", "#FE4502", "#1E90FF"],
+        "delta_ndvi_avg": ["#f0e442", "#009e73", "#d55e00", "#56b4e9"],
     }
     extend = {
         "delta_ndvi_avg": "neither",
@@ -337,6 +344,7 @@ def figure_2a():
                                       )
         print(" >>>>>>> Finish !")
 
+
 def supplementary_figure_6_a():
     data_path = os.path.join(manuscript_data, r"vd_stats/")
     outputPath = os.path.join(figure_path, "Supplementary Figure 6/")
@@ -352,7 +360,7 @@ def supplementary_figure_6_a():
         "delta_ndvi_avg_sm": "ΔNDVI",
     }
     cmap = {
-        "delta_ndvi_avg_sm": ["#FED700", "#32CD33", "#FE4502", "#1E90FF"],
+        "delta_ndvi_avg_sm": ["#f0e442", "#009e73", "#d55e00", "#56b4e9"],
     }
     extend = {
         "delta_ndvi_avg_sm": "neither",
@@ -382,6 +390,7 @@ def figure_2b():
         ifl = ds.read(1)[::-1].astype(float)
         ifl[ifl == ifl[0, 0]] = np.nan
     data[ifl == ifl[0, 0]] = np.nan
+    data[ifl == 40] = np.nan
     df = pd.DataFrame({classify_col: ifl.flatten(), object_val: data.flatten()})
     df = df.dropna(subset=[classify_col, object_val])
     df[classify_col] = df[classify_col].apply(lambda x: 1 if x in [11] else 2 if ~np.isnan(x) else x)
@@ -423,6 +432,7 @@ def supplementary_figure_6_b():
     delta_ndvi_distribution_plot(datas, classify_name, colors, outputPath, f"Supplementary Figure 6 b",
                                  "ΔNDVI")
     print(" >>>>>>> Finish !")
+
 
 def figure_2c():
     pPath = os.path.join(manuscript_data, r"Climate/total_precipitation.tif")
@@ -471,7 +481,6 @@ def figure_2c():
         print(" >>>>>>> Finish !")
 
 
-
 def supplementary_figure_6_c():
     pPath = os.path.join(manuscript_data, r"Climate/total_precipitation.tif")
     tPath = os.path.join(manuscript_data, r"Climate/2m_temperature.tif")
@@ -496,8 +505,8 @@ def supplementary_figure_6_c():
     }
     cmap = {
         "delta_ndvi_avg_sm": LinearSegmentedColormap.from_list("blue_cmap",
-                                                            [(0, "#ff7f0e"), (1 / 2, "white"),
-                                                             (1, '#1f77b4')]),
+                                                               [(0, "#ff7f0e"), (1 / 2, "white"),
+                                                                (1, '#1f77b4')]),
     }
 
     for var in var_name:
@@ -517,6 +526,7 @@ def supplementary_figure_6_c():
                     cmap=cmap[var]
                     )
         print(" >>>>>>> Finish !")
+
 
 def figure_3():
     outputPath = os.path.join(figure_path, "Figure 3/")
@@ -539,7 +549,7 @@ def figure_3():
         "FM": "Forest management",
         "ΔP": "ΔP",
         "ΔTa": "ΔTa",
-        "OR (-)": "OR (-) /Pentad⁻¹",# ⁻ ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ (U+2070 到 U+2079)
+        "OR (-)": "OR (-) /Pentad⁻¹",  # ⁻ ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ (U+2070 到 U+2079)
         "SD": "SD /Pentads",
         "PS (-)": "PS (-)",
         "Age": "Age /years",
@@ -548,7 +558,7 @@ def figure_3():
         "Den": "Den /10⁴ trees per grid"
     }
     y_lims = [-0.1, 0.1]
-    y_ticks =  [-0.1, -0.05, 0, 0.05, 0.1]
+    y_ticks = [-0.1, -0.05, 0, 0.05, 0.1]
     x_lims = {
         "MAT": [-12, 30],
         "MAP": [3, 40],
@@ -647,16 +657,16 @@ def figure_3():
             print(" >>>>>>> Finish !")
 
 
-def supplementary_figure_11():
-    outputpath = os.path.join(figure_path, f"Supplementary Figure 11")
+def supplementary_figure_12():
+    outputpath = os.path.join(figure_path, f"Supplementary Figure 12")
     for mode, num in zip(["train", "vali"], ["a", "b"]):
-        print(f"Plot ==> Supplementary Figure 11 {num}", end="")
+        print(f"Plot ==> Supplementary Figure 12 {num}", end="")
         inputpath = os.path.join(manuscript_data, "shap_output", f"ΔNDVI_model_output({mode}).csv")
         df = dd.read_csv(inputpath, usecols=["Simulated", "Observed"])
         df = df.compute()
         df = df.dropna(how="any", axis=0)
         model_evaluation(df["Simulated"].values, df["Observed"], outputPath=outputpath,
-                         figure_name=f"Supplementary Figure 11 {num}")
+                         figure_name=f"Supplementary Figure 12 {num}")
         print(" >>>>>>> Finish !")
 
 
@@ -680,7 +690,7 @@ def supplementary_figure_1_ace():
         "development_speed_sen": (-0.1, -0.05, 0, 0.05, 0.1),
     }
     colorbar_label = {
-        "condition_peak_sen": "Peak Stress /10yr⁻¹",# ⁻ ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ (U+2070 到 U+2079)
+        "condition_peak_sen": "Peak Stress /10yr⁻¹",  # ⁻ ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ (U+2070 到 U+2079)
         "condition_duration_sen": "Stress Duration /Pentads·10yr⁻¹",
         "development_speed_sen": "Onset Rate /Pentad⁻¹·10yr⁻¹"
     }
@@ -759,9 +769,9 @@ def supplementary_figure_1_bdf():
     colorbar_label = "Mann-Kendall Test"
     level = [-999, -2.58, -1.96, 1.96, 2.58, 999]
     cmap = {
-        "condition_peak_mk": ['#67000dff', '#fdae61ff', '#FFFFFF00', "#2b83baff", '#00441bff'],
-        "condition_duration_mk": ['#67000dff', '#fdae61ff', '#FFFFFF00', "#2b83baff", '#00441bff'],
-        "development_speed_mk": ['#67000dff', '#fdae61ff', '#FFFFFF00', "#2b83baff", '#00441bff'],
+        "condition_peak_mk": ['#d55e00', "#e69f00", '#FFFFFF00', '#56b4e9', '#009e73'],
+        "condition_duration_mk":  ['#d55e00', "#e69f00", '#FFFFFF00', '#56b4e9', '#009e73'],
+        "development_speed_mk":  ['#d55e00', "#e69f00", '#FFFFFF00', '#56b4e9', '#009e73'],
     }
     for var in var_name:
         print(f"Plot ==> {figure_name[var]}", end="")
@@ -800,7 +810,7 @@ def supplementary_figure_1_g():
         "Supplementary Figure 1 g": ("Peak Stress", "Stress Duration", "Onset Rate"),
     }
     line_colors = {
-        "Supplementary Figure 1 g": (("#67000d", "#fb7050"), ("#08306b", "#529dcc"), ("#00441b", "#55b567"))
+        "Supplementary Figure 1 g": (("#d55e00", "#fb7050"), ("#0072b2", "#529dcc"), ("#009e73", "#55b567"))
     }
     line_ticks = {
         "Supplementary Figure 1 g": ((-0.2, 0, 0.2), (-0.4, 0, 0.4), (-0.2, 0, 0.2))
@@ -850,14 +860,14 @@ def supplementary_figure_2_ab():
     }
     cmap = {
         "delta_p": LinearSegmentedColormap.from_list("blue_cmap",
-                                                         [(0, '#7b3294ff'),
-                                                          (0.3, '#c2a5cf80'),
-                                                          (0.5, '#add8e660'),
-                                                          (0.8, 'white'),
-                                                          (1, '#a6dbaaff')]),
+                                                     [(0, '#7b3294ff'),
+                                                      (0.3, '#c2a5cf80'),
+                                                      (0.5, '#add8e660'),
+                                                      (0.8, 'white'),
+                                                      (1, '#a6dbaaff')]),
         "delta_ta": LinearSegmentedColormap.from_list("blue_cmap",
-                                                          [(0, "#2b83baff"), (0.25, "white"), (0.5, '#ffffbfff'),
-                                                           (0.75, '#fdae61ff'), (1, '#d7191cff')]),
+                                                      [(0, "#2b83baff"), (0.25, "white"), (0.5, '#ffffbfff'),
+                                                       (0.75, '#fdae61ff'), (1, '#d7191cff')]),
     }
     extend = {
         "delta_p": "both",
@@ -936,14 +946,14 @@ def supplementary_figure_5_abc():
     }
     cmap = {
         "delta_ndvi_avg": LinearSegmentedColormap.from_list("blue_cmap",
-                                                            [(0, "#a50f15"), (1 / 2, "white"),
-                                                             (1, '#00441b')]),
+                                                            [(0, '#cc79a7'), (1 / 2, "white"),
+                                                             (1, "#009e73")]),
         "delta_lai_avg": LinearSegmentedColormap.from_list("blue_cmap",
-                                                           [(0, "#a50f15"), (1 / 2, "white"),
-                                                            (1, '#00441b')]),
+                                                            [(0, '#cc79a7'), (1 / 2, "white"),
+                                                             (1, "#009e73")]),
         "delta_sif_avg": LinearSegmentedColormap.from_list("blue_cmap",
-                                                           [(0, "#a50f15"), (1 / 2, "white"),
-                                                            (1, '#00441b')]),
+                                                            [(0, '#cc79a7'), (1 / 2, "white"),
+                                                             (1, "#009e73")]),
     }
     extend = {
         "delta_ndvi_avg": "both",
@@ -997,7 +1007,7 @@ def supplementary_figure_8():
         "MAP": "MAP /mm",
         "ΔP": "ΔP",
         "ΔTa": "ΔTa",
-        "OR (-)": "OR (-) /Pentad⁻¹",# ⁻ ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ (U+2070 到 U+2079)
+        "OR (-)": "OR (-) /Pentad⁻¹",  # ⁻ ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ (U+2070 到 U+2079)
         "SD": "SD /Pentads",
         "PS (-)": "PS (-)",
         "Age": "Age /years",
@@ -1111,8 +1121,8 @@ def supplementary_figure_9_a():
     df_clean = df_clean[df_clean[classify_col].isin(mapping.index)].copy()
     df_clean[classify_col] = df_clean[classify_col].map(mapping)
     # 按自定义顺序排序
-    df_clean = df_clean.sort_values(classify_col)
-    colors = ['#2ca02c', '#1f77b4', '#ff7f0e', '#d62728', '#9467bd']
+    # df_clean = df_clean.sort_values(classify_col)
+    colors = ['#009e73', '#0072b2', '#e69f00', '#d55e00', '#cc79a7']
     forest_management_bar(df_clean, classify_col, object_val, colors,
                           xlabel=object_val, ylabel="Forest management",
                           outputpath=outputPath, figure_name=f"Supplementary Figure 9 a")
@@ -1120,7 +1130,7 @@ def supplementary_figure_9_a():
 
 
 def supplementary_figure_9_b():
-    label_name =  "Forest Management Practice"
+    label_name = "Forest Management Practice"
     colors = ["#607D8B", "#795548", "#78909C", "#8D6E63", "#90A4AE"]
     data_path = os.path.join(manuscript_data, r"vd_stats/meta_analysis_data.csv")
     outputPath = os.path.join(figure_path, f"Supplementary Figure 9/")
@@ -1150,15 +1160,16 @@ def supplementary_figure_9_b():
                                     outputpath=outputPath, figure_name=f"Supplementary Figure 9 b")
     print(" >>>>>>> Finish !")
 
+
 def supplementary_figure_7_a():
     data_path = os.path.join(manuscript_data, r"vd_stats/delta_ndvi_avg.nc")
     outputPath = os.path.join(figure_path, f"Supplementary Figure 7")
     create_path(outputPath, is_dir=True)
     print(f"Plot ==> Supplementary Figure 7 a", end="")
-    with rio.open(os.path.join(manuscript_data, "ForestCharacteristics","ForestManagement.tif")) as ds:
+    with rio.open(os.path.join(manuscript_data, "ForestCharacteristics", "ForestManagement.tif")) as ds:
         fm = ds.read(1)[::-1].astype("float32")
         fm[fm == fm[0, 0]] = np.nan
-    with rio.open(os.path.join(manuscript_data, "ForestCharacteristics","ForestType.tif")) as ds:
+    with rio.open(os.path.join(manuscript_data, "ForestCharacteristics", "ForestType.tif")) as ds:
         ft = ds.read(1)[::-1].astype("float32")
         ft[ft == ft[0, 0]] = np.nan
         ft_info_path = os.path.join(manuscript_data, "ForestCharacteristics", "forest_type.csv")
@@ -1176,19 +1187,20 @@ def supplementary_figure_7_a():
     colors = ['#7FC7AD', '#7FB2E5']
 
     delta_ndvi_between_ft_and_fm(df_clean, classify_col="FT", sub_classify_col="FM", value_col=object_val,
-                                 color=colors, ylabel=object_val, xlabel="Forest types" ,
+                                 color=colors, ylabel=object_val, xlabel="Forest types",
                                  outputpath=outputPath, figure_name=f"Supplementary Figure 7a")
     print(" >>>>>>> Finish !")
+
 
 def supplementary_figure_7_b():
     data_path = os.path.join(manuscript_data, r"vd_stats/delta_ndvi_avg_sm.nc")
     outputPath = os.path.join(figure_path, f"Supplementary Figure 7")
     create_path(outputPath, is_dir=True)
     print(f"Plot ==> Supplementary Figure 7 b", end="")
-    with rio.open(os.path.join(manuscript_data, "ForestCharacteristics","ForestManagement.tif")) as ds:
+    with rio.open(os.path.join(manuscript_data, "ForestCharacteristics", "ForestManagement.tif")) as ds:
         fm = ds.read(1)[::-1].astype("float32")
         fm[fm == fm[0, 0]] = np.nan
-    with rio.open(os.path.join(manuscript_data, "ForestCharacteristics","ForestType.tif")) as ds:
+    with rio.open(os.path.join(manuscript_data, "ForestCharacteristics", "ForestType.tif")) as ds:
         ft = ds.read(1)[::-1].astype("float32")
         ft[ft == ft[0, 0]] = np.nan
         ft_info_path = os.path.join(manuscript_data, "ForestCharacteristics", "forest_type.csv")
@@ -1205,9 +1217,10 @@ def supplementary_figure_7_b():
     ###################################################################################################################
     colors = ['#7FC7AD', '#7FB2E5']
     delta_ndvi_between_ft_and_fm(df_clean, classify_col="FT", sub_classify_col="FM", value_col=object_val,
-                                 color=colors, ylabel=object_val, xlabel="Forest types" ,
+                                 color=colors, ylabel=object_val, xlabel="Forest types",
                                  outputpath=outputPath, figure_name=f"Supplementary Figure 7b")
     print(" >>>>>>> Finish !")
+
 
 if __name__ == "__main__":
     manuscript_data = "../dataFile"  # "The input path of manuscript data"
@@ -1353,7 +1366,10 @@ if __name__ == "__main__":
     # The specific meanings of the grid values can be found in
     # "../dataFile/ForestCharacteristics/forest_management_info.csv".
 
-    """Supplementary Figure 11. Performance evaluation of XGBoost model with (a) training dataset (n=808,407); (b)
+    """Supplementary Figure 11. The preferred reporting items for systematic reviews and meta-analyses flow diagram."""
+    # Created Using PRISMA 2020 flow diagram (https://www.prisma-statement.org/), without using code.
+
+    """Supplementary Figure 12. Performance evaluation of XGBoost model with (a) training dataset (n=808,407); (b)
     validation datasets (n=538,939). Metrics: F1-score, coefficient of determination (r²), and root mean square
     error (RMSE)."""
-    supplementary_figure_11()
+    supplementary_figure_12()
