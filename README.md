@@ -25,80 +25,78 @@ The code for plotting and data analysis used in the manuscript.
 
 ## How to Get Start
 The results of the paper can be reproduced by using the following code in **_main.py_**.    
-Before using the code, you should [download the data](https://doi.org/10.6084/m9.figshare.29435648) for analysis and 
+Before using the code, you should [download the data](https://figshare.com/s/00a907a42f869aa18d74) for analysis and 
 replace **_manuscript_data_** with the folder path where the data is stored, and set **_figure_path_** to the folder 
 path where you wish to save the results.
-- Fig. 1 Spatial patterns and latitudinal variations in flash drought (FD) characteristics across global forests.
+- Fig.1. Spatial patterns and latitudinal variations in flash drought characteristics across global forests.
 ```python
   figure_1abcd()  # Subplot a, b, c, and d
   figure_1e()  # Subplot e
 ```
-- Fig. 2 Impacts of flash drought events (FDs) on global forest.
+- Fig. 2. Impacts of flash drought on global forest.
 ```python
   figure_2a()  # Subplot a
   figure_2b()  # Subplot b
   figure_2c()  # Subplot c
 ```
-- Fig. 3 Fig. 3 Interactive effects of regulating factors on forest responses (ΔNDVI) to flash drought events between 
-intact (IF) and managed forests (MF).
+- Fig. 3 Interactive effects of regulating factors on forest responses to flash drought between intact and 
+managed forests.
 ```python
   figure_3()
 ```
-- Supplementary Figure 1. Spatial distribution of temporal trends in flash drought event characteristics. 
+- Supplementary Figure 1. Spatial distribution of temporal trends in flash drought characteristics.
 ```python
   supplementary_figure_1_ace()  # Subplot a, c, and e
   supplementary_figure_1_bdf()  # Subplot b, d, and f
   supplementary_figure_1_g()  # Subplot g
 ```
-- Supplementary Figure 2. Spatial distribution of (a) normalized temperature anomalies (ΔTa), (b) normalized 
-precipitation anomalies (ΔP), and (c) consistency between ΔP and ΔTa during flash drought events.
+- Supplementary Figure 2. Spatial distribution of (a) normalized temperature anomalies, (b) normalized precipitation 
+anomalies, and (c) consistency between precipitation and temperature anomalies during flash droughts.
 ```python
   supplementary_figure_2_ab()  # Subplot a and b
   supplementary_figure_2_c()  # Subplot c
 ```
-- Supplementary Figure 3. Spatial patterns and latitudinal variations in flash drought (FD) characteristics across 
-global forests (soil moisture-based).
+- Supplementary Figure 3. Spatial patterns and latitudinal variations in flash drought characteristics across global 
+forests (soil moisture-based).
 ```python
   supplementary_figure_3abcd()  # Subplot a, b, c, and d
   supplementary_figure_3_e()  # Subplot e
 ```
-- Supplementary Figure 4. The spatial distribution of flash drought events frequency.
+- Supplementary Figure 4. The spatial distribution of flash drought frequency.
 ```python
   supplementary_figure_4()
 ```
-- Supplementary Figure 5. Spatial patterns of mean anomalies during flash drought events.
+- Supplementary Figure 5. Spatial patterns of mean anomalies during flash droughts. 
 ```python
   supplementary_figure_5_abc()  # Subplot a, b, and c
   supplementary_figure_5_de()  # Subplot d and e
 ```
-- Supplementary Figure 6. Impacts of flash drought events (FDs) on global forest (soil moisture-based).
+- Supplementary Figure 6. Impacts of flash droughts on global forests (soil moisture-based).
 ```python
   supplementary_figure_6_a() # Subplot a
   supplementary_figure_6_b() # Subplot b
   supplementary_figure_6_c() # Subplot c
 ```
 - Supplementary Figure 7. Normalized Difference Vegetation Index anomalies (ΔNDVI) during (a) Standardized 
-Precipitation-Evapotranspiration Index-base, (b) soil moisture-base flash drought events relative to concurrent 
-normal conditions under different forest types.
+Precipitation-Evapotranspiration Index-base, (b) soil moisture-base flash droughts relative to concurrent normal 
+conditions under different forest types.
 ```python
   supplementary_figure_7_a() # Subplot a
   supplementary_figure_7_b() # Subplot b
 ```
-- Supplementary Figure 8. The individual effects of regulating factors on forest response (ΔNDVI) to flash drought 
-events.
+- Supplementary Figure 8. The individual effects of regulating factors on forest response (ΔNDVI) to flash droughts.
 ```python
   supplementary_figure_8()
 ```
-- Supplementary Figure 9. Normalized Difference Vegetation Index anomalies (ΔNDVI) during flash drought events relative 
-to concurrent normal conditions under different (a) Forest management; (b) Forest management practices.
+- Supplementary Figure 9. Normalized Difference Vegetation Index anomalies (ΔNDVI) during flash droughts relative 
+to concurrent normal conditions under different (a) Forest management; (b) Forest management practices
 ```python
   supplementary_figure_9_a()
   supplementary_figure_9_b()
 ```
-- Supplementary Figure 11. Performance evaluation of XGBoost model with (a) training dataset (n=808,407); 
-(b) validation datasets (n=538,939).
+- Supplementary Figure 12. Performance evaluation of the extreme gradient boosting model.
 ```python
-  supplementary_figure_11()
+  supplementary_figure_12()
 ```
 
 ## Technical Specifications
@@ -129,4 +127,4 @@ to concurrent normal conditions under different (a) Forest management; (b) Fores
 
 ## Citation
 Pang JZ, Xu H, Xu Y, Zhang YF, Wu XY, Li KX, and Zhang ZZ. 2025. Flash droughts threaten global managed forests. 
-Nature Communications, under peer review.
+Nature Communications.
